@@ -17,4 +17,4 @@ def load_configs(filename):
                 else:
                     configs[opt] = False
             else:
-                configs[opt] = value
+                configs[opt] = int(value)

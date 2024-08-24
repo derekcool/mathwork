@@ -1,6 +1,5 @@
 import myconfigs
-from multiplication_problems import MulProblem
-from addsub_problems import AddProblem, SubProblem
+from arithmetic_problems import *
 
 
 def problem_loops(problem_generator):
@@ -37,6 +36,7 @@ def main_loop():
         print("1: Addition")
         print("2: Subtraction")
         print("3: Multiplication")
+        print("4: Division")
         print("q: exit")
         print()
         prog = input("select the program number: ")
@@ -44,17 +44,35 @@ def main_loop():
         if prog == 'q':
             break
         if prog == '1':
-            problem_loops(AddProblem(int(myconfigs.configs["add_min"]), int(myconfigs.configs["add_max"])))
+            min1 = myconfigs.configs["add1min"]
+            max1 = myconfigs.configs["add1max"]
+            min2 = myconfigs.configs["add2min"]
+            max2 = myconfigs.configs["add2max"]
+            problem_loops(AddProblem(min1, max1, min2, max2))
         elif prog == '2':
-            problem_loops(SubProblem(int(myconfigs.configs["sub_min"]), int(myconfigs.configs["sub_max"])))
+            min1 = myconfigs.configs["sub1min"]
+            max1 = myconfigs.configs["sub1max"]
+            min2 = myconfigs.configs["sub2min"]
+            max2 = myconfigs.configs["sub2max"]
+            problem_loops(SubProblem(min1, max1, min2, max2))
         elif prog == '3':
-            problem_loops(MulProblem(int(myconfigs.configs["mul_min"]), int(myconfigs.configs["mul_max"])))
+            min1 = myconfigs.configs["mul1min"]
+            max1 = myconfigs.configs["mul1max"]
+            min2 = myconfigs.configs["mul2min"]
+            max2 = myconfigs.configs["mul2max"]
+            problem_loops(MulProblem(min1, max1, min2, max2))
+        elif prog == '4':
+            min1 = myconfigs.configs["div1min"]
+            max1 = myconfigs.configs["div1max"]
+            min2 = myconfigs.configs["div2min"]
+            max2 = myconfigs.configs["div2max"]
+            problem_loops(DivProblem(min1, max1, min2, max2))
         print()
 
 
 if __name__ == '__main__':
     myconfigs.load_configs("configs.ini")
     myconfigs.load_configs("myconfigs.ini")
-    for k, v in myconfigs.configs.items():
-        print("\t{} = {}".format(k, v))
+    # for k, v in myconfigs.configs.items():
+    #     print("\t{} = {}".format(k, v))
     main_loop()
