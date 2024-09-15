@@ -1,5 +1,6 @@
 import myconfigs
 from arithmetic_problems import *
+from simplify_equation import *
 
 
 def problem_loops(problem_generator):
@@ -31,7 +32,35 @@ def problem_loops(problem_generator):
     input("Press 'Enter' to continue.")
 
 
-def main_loop():
+def question_loop(question_generator):
+    total = 1
+    cmd = ""
+    while cmd != "q":
+        print(total)
+        print()
+        print(question_generator.generate())
+        print()
+        cmd = input("Enter for the next question. q to quit. ")
+        total += 1
+
+
+def menu_simplify_equations():
+    while True:
+        print("1: Level 1")
+        print("2: Level 2")
+        print("q: exit")
+        print()
+        prog = input("select the level: ")
+        print()
+        if prog == 'q':
+            break
+        if prog == '1':
+            question_loop(SimplifyEquationL1())
+        if prog == '2':
+            question_loop(SimplifyEquationL2())
+
+
+def menu_arithmetic():
     while True:
         print("1: Addition")
         print("2: Subtraction")
@@ -67,6 +96,22 @@ def main_loop():
             min2 = myconfigs.configs["div2min"]
             max2 = myconfigs.configs["div2max"]
             problem_loops(DivProblem(min1, max1, min2, max2))
+
+
+def main_loop():
+    while True:
+        print("1: +-*/")
+        print("2: Simplify Equation")
+        print("q: exit")
+        print()
+        prog = input("select the program number: ")
+        print()
+        if prog == 'q':
+            break
+        if prog == '1':
+            menu_arithmetic()
+        elif prog == '2':
+            menu_simplify_equations()
         print()
 
 
